@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $name = test_input($_POST["name"]);
     
-    if(!preg_match("/^[a-zA-Z0-9.-_]*$/",$name))
+    if(!preg_match("/^[a-zA-Z0-9._-]*$/",$name))
     {
       $nameErr = "Alpha numeric characters, period, dash and underscore are allowed";
     }
