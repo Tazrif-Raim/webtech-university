@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+}
+
+.sidebar {
+    flex-basis: 25%;
+    background-color: #f1f1f1;
+    padding: 20px;
+    border: 2px solid #000; 
+}
+
+.content {
+    flex-basis: 75%;
+    background-color: #fff;
+    padding: 20px;
+    border: 2px solid #000; 
+}
