@@ -61,6 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             }
             echo "</select>";
         ?>
+        <p>must choose solution provider for lab task 6</p>
         <br>
         <input type="submit" name ="submit" value="Register">
         <input type="reset" name="reset" value="Reset">
