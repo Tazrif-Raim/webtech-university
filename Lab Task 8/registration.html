@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <script>
+        function validateForm(){
+            if(checkFirstName() && checkLastName() && checkPassword() && checkConfirmPassword() && checkEmail() && checkUsername()){
+                alert("Registration Successful")
+                return true;
+            } else {
+                alert("Registration Failed")
+                return false;
+            }
+        }
+
+        function checkFirstName(){
+            let firstName = document.getElementById("firstName");
+            if(firstName.value == ""){
+                document.getElementById("firstNameError").innerHTML = "First Name cannot be empty";
+                firstName.style.border = "2px solid red";return false;
+            } 
+            else {
+                const regex = /^[a-zA-Z\s]*$/;
+                if(regex.test(firstName.value) == false){
+                    document.getElementById("firstNameError").innerHTML = "First Name can only contain letters and white spaces";
+                    firstName.style.border = "2px solid red";return false;
+                } else {
+                    document.getElementById("firstNameError").innerHTML = "";
+                    firstName.style.border = "2px solid green";return true;
+                }
+            }
+        }
+
+        function checkLastName(){
+            let lastName = document.getElementById("lastName");
+            if(lastName.value == ""){
+                document.getElementById("lastNameError").innerHTML = "Last Name cannot be empty";
+                lastName.style.border = "2px solid red";return false;
+            } else {
+                const regex = /^[a-zA-Z\s]*$/;
+                if(regex.test(lastName.value) == false){
+                    document.getElementById("lastNameError").innerHTML = "Last Name can only contain letters and white spaces";
+                    lastName.style.border = "2px solid red";return false;
+                } else {
+                    document.getElementById("lastNameError").innerHTML = "";
+                    lastName.style.border = "2px solid green";return true;
+                }
+            }
+        }
+
+        function checkPassword(){
+            let password = document.getElementById("password");
+            if(password.value == ""){
+                document.getElementById("passwordError").innerHTML = "Password cannot be empty";
+                password.style.border = "2px solid red";return false;
+            } else {
+                const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$%@])[a-zA-Z\d#$%@]{8,}$/;
+                if(regex.test(password.value) == false){
+                    document.getElementById("passwordError").innerHTML = "Password must contain at least 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character(@, #, $, %)";
+                    password.style.border = "2px solid red";return false;
+                } else {
+                    document.getElementById("passwordError").innerHTML = "";
+                    password.style.border = "2px solid green";return true;
+                }
+            }
+        }
+
+        function checkConfirmPassword(){
+            let confirmPassword = document.getElementById("confirmPassword");
+            let password = document.getElementById("password");
+            if(confirmPassword.value == ""){
+                document.getElementById("confirmPasswordError").innerHTML = "Confirm Password cannot be empty";
+                confirmPassword.style.border = "2px solid red";return false;
+            } else {
+                if(confirmPassword.value !== password.value){
+                    document.getElementById("confirmPasswordError").innerHTML = "Confirm Password must match Password";
+                    confirmPassword.style.border = "2px solid red";return false;
+                } else {
+                    document.getElementById("confirmPasswordError").innerHTML = "";
+                    confirmPassword.style.border = "2px solid green";return true;
+                }
+            }
+        }
+
+        function checkEmail(){
+            let email = document.getElementById("email");
+            if(email.value == ""){
+                document.getElementById("emailError").innerHTML = "Email cannot be empty";
+                email.style.border = "2px solid red";return false;
+            } else {
+                const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                if(regex.test(email.value) == false){
+                    document.getElementById("emailError").innerHTML = "Email is not valid";
+                    email.style.border = "2px solid red";return false;
+                } else {
+                    document.getElementById("emailError").innerHTML = "";
+                    email.style.border = "2px solid green";return true;
+                }
+            }
+        }
+
+        function checkUsername(){
+            let username = document.getElementById("username");
+            if(username.value == ""){
+                document.getElementById("usernameError").innerHTML = "Username cannot be empty";
+                username.style.border = "2px solid red";return false;
+            } else {
+                const regex = /^[a-zA-Z0-9._-]+$/;
+                if(regex.test(username.value) == false){
+                    document.getElementById("usernameError").innerHTML = "Username can only contain letters, numbers, period, underscore and dash";
+                    username.style.border = "2px solid red";return false;
+                } else {
+                    document.getElementById("usernameError").innerHTML = "";
+                    username.style.border = "2px solid green";return true;
+                }
+            }
+        }
+
+        function showPassword(){
+            let password = document.getElementById("password");
+            let confirmPassword = document.getElementById("confirmPassword");
+            let showPassword = document.getElementById("showPass");
+            if(showPassword.checked){
+                password.type = "text";
+                confirmPassword.type = "text";
+            } else {
+                password.type = "password";
+                confirmPassword.type = "password";
+            }
+        }
+    </script>
+</head>
+<body>
+    <form name="registrationForm" method="post" action="" onsubmit="validateForm()">
+        <label for="firstName">First Name:</label>
+        <input type="text" name="firstName" id="firstName" onblur="checkFirstName()" onkeyup="checkFirstName()">
+        <p id="firstNameError"></p>
+        <br>
+        <label for="lastName">Last Name:</label>
+        <input type="text" name="lastName" id="lastName" onblur="checkLastName()" onkeyup="checkLastName()">
+        <p id="lastNameError"></p>
+        <br>
+        <label for="username">Username: </label>
+        <input type="text" name="username" id="username" onblur="checkUsername()" onkeyup="checkUsername()">
+        <p id="usernameError"></p>
+        <br>
+        <label for="password">Password: </label>
+        <input type="password" name="password" id="password" onblur="checkPassword()">
+        <span>
+            <input type="checkbox" name="showPass" id="showPass" onclick="showPassword()">
+            <label for="showPass">Show Password</label>
+        </span>
+        <p id="passwordError"></p>
+        <br>
+        <label for="confirmPassword">Confirm Password: </label>
+        <input type="password" name="confirmPassword" id="confirmPassword" onblur="checkConfirmPassword()">
+        <p id="confirmPasswordError"></p>
+        <br>
+        <label for="email">Email: </label>
+        <input type="email" name="email" id="email" onblur="checkEmail()">
+        <p id="emailError"></p>
+        <br>
+        <input type="submit" name="submit" value="Register">
+    </form>
+</body>
+</html>
