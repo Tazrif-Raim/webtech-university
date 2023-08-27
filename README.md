@@ -24,6 +24,7 @@ Content Viewing: Public users can browse and access published solutions, news, a
 
 Admin Privileges: Admins possess the authority to delete user accounts, and only they can create additional admin accounts, maintaining control over the platform's integrity.
 
+Technologies Used: HTML, CSS(nominal), JS(AJAX, JSON), PHP, MySQL
 
 To Try:
 
